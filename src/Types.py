@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-DataType = dict[str, list[tuple[str, float]]]
+DataType = dict[str, list[tuple[str, int]]]
