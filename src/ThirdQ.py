@@ -3,13 +3,15 @@ from Types import DataType
 from CalcRating import CalcRating
 from typing import Dict, List
 
+RatingType = dict[str, float]
+
 
 class ThirdQ:
 
     def __init__(self, data: DataType) -> None:
         self.data = data
 
-    def ratings(self) -> Dict[str, float]:
+    def ratings(self) -> RatingType:
         return CalcRating(self.data).calc()
 
     def _percentile(self, values: List[float], p: float) -> float:
