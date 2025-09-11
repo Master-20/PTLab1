@@ -11,12 +11,14 @@ class JsonDataReader(DataReader):
             obj = json.load(f)
 
         if not isinstance(obj, dict):
-            raise ValueError("JSON root must be an object mapping names to subject dicts")
+            raise ValueError("JSON root must be an object mapping names"
+                             "to subject dicts")
 
         students: DataType = {}
         for name, subjects in obj.items():
             if not isinstance(subjects, dict):
-                raise ValueError("Each student value must be an object mapping subject to score")
+                raise ValueError("Each student value must be an object"
+                                 "mapping subject to score")
             students[name] = []
             for subj, score in subjects.items():
                 students[name].append((str(subj), int(score)))

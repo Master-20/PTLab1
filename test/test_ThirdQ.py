@@ -17,7 +17,8 @@ def test_threshold_and_top():
     data = sample_data()
     tq = ThirdQ(data)
     thr = tq.threshold()
-    # значения рейтингов: [100,80,60,40] -> 75-й процентиль = 85.0 (интерполяция)
+    # значения рейтингов:
+    # [100,80,60,40] -> 75-й процентиль = 85.0 (интерполяция)
     assert pytest.approx(thr, rel=1e-6) == 85.0
 
     top = tq.thirdq_students()
