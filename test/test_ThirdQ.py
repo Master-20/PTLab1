@@ -19,11 +19,13 @@ def test_threshold_and_top():
     thr = tq.threshold()
     # значения рейтингов:
     # [100,80,60,40] -> 75-й процентиль = 85.0 (интерполяция)
-    assert pytest.approx(thr, rel=1e-6) == 85.0
+    #                   50-й процентиль = 70.0 (интерполяция)
+    assert pytest.approx(thr[0], rel=1e-6) == 70.0
+    assert pytest.approx(thr[1], rel=1e-6) == 85.0
 
     top = tq.thirdq_students()
-    assert list(top.keys()) == ["A Student"]
-    assert top["A Student"] == 100
+    assert list(top.keys()) == ["B Student"]
+    assert top["B Student"] == 80
 
 
 def test_print_top(capsys):
@@ -31,7 +33,7 @@ def test_print_top(capsys):
     tq.print_3q()
     captured = capsys.readouterr()
     assert "Third quartile students" in captured.out
-    assert "A Student: 100.0000" in captured.out
+    assert "B Student: 80.0000" in captured.out
 
 
 def test_empty_data():

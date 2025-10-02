@@ -27,14 +27,14 @@ class ThirdQ:
         return values_sorted[low] + frac * (values_sorted[high]
                                             - values_sorted[low])
 
-    def threshold(self) -> float:
+    def threshold(self) -> List[float]:
         vals = list(self.ratings().values())
-        return self._percentile(vals, 0.75)
+        return self._percentile(vals, 0.5), self._percentile(vals, 0.75)
 
     def thirdq_students(self) -> Dict[str, float]:
         r = self.ratings()
         thr = self.threshold()
-        return {k: v for k, v in r.items() if v >= thr}
+        return {k: v for k, v in r.items() if (v >= thr[0] and v < thr[1])}
 
     def print_3q(self) -> None:
         ts = self.thirdq_students()
